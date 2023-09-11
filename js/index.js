@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 const button = document.getElementById("searchButton");
+const responseContainer = document.getElementById("responseContainer");
 
 button.addEventListener("click", () => {
     const serverURL = "http://localhost:8080/mobilia/ContractService?contractParam=CONTRATO001&action=getContractByParam";
@@ -12,7 +13,8 @@ button.addEventListener("click", () => {
             return response.json(); 
         })
         .then(data => {
-            console.log("Respuesta del servidor:", data);
+            const formattedDataContainer = JSON.stringify(data, null, 2);
+            responseContainer.textContent = JSON.stringify(data);
         })
         .catch(error => {
             console.error("Error en la solicitud:", error);
