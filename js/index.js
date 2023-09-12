@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const button = document.getElementById("searchButton");
     const responseContainer = document.getElementById("responseContainer");
     const tableBody = document.getElementById('table-body');
-    
 
     button.addEventListener("click", () => {
         tableBody.innerHTML = '';
@@ -23,7 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
         const serverURL = `http://localhost:8080/mobilia/ContractService?contractParam=${paramValue}&action=getContractByParam`;
-
 
         fetch(serverURL)
             .then(response => {
@@ -55,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             })
             .catch(error => {
-                console.error("Error en la solicitud:", error);
+               alert("Error en la solicitud, no se ha logrado establecer conexión con el servidor.");
             });
     });
 });
