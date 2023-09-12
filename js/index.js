@@ -1,7 +1,18 @@
+const propertyType = {
+    House : "Casa",
+    Apartment : "Apartamento",
+    Local : "Local"
+};
+
+const propertyState = {
+    Active : "Activo",
+    Inactive : "Inactivo"
+}
 document.addEventListener("DOMContentLoaded", () => {
     const button = document.getElementById("searchButton");
     const responseContainer = document.getElementById("responseContainer");
     const tableBody = document.getElementById('table-body');
+    
 
     button.addEventListener("click", () => {
         tableBody.innerHTML = '';
@@ -30,9 +41,9 @@ document.addEventListener("DOMContentLoaded", () => {
                         const row = document.createElement('tr');
                         row.innerHTML = `
                         <td>${item.contractCode}</td>
-                        <td>${item.state}</td>
+                        <td>${propertyState[item.state]}</td>
                         <td>${item.address}</td>
-                        <td>${item.type}</td>
+                        <td>${propertyType[item.type]}</td>
                         <td>${item.proprietor.join(', ')}</td>
                         <td>${item.lessee.join(', ')}</td>
                         <td>${item.solidaryDebtor.join(', ')}</td>
