@@ -1,9 +1,18 @@
 document.addEventListener("DOMContentLoaded", () => {
     const button = document.getElementById("searchButton");
     const responseContainer = document.getElementById("responseContainer");
+    const tableBody = document.getElementById('table-body');
 
     button.addEventListener("click", () => {
-        const serverURL = "http://localhost:8080/mobilia/ContractService?contractParam=001&action=getContractByParam";
+        tableBody.innerHTML = '';
+        const paramInput = document.getElementById("paramInput");
+        const paramValue = paramInput.value.trim(); 
+        if (paramValue === "") {
+            alert("Por favor, ingrese un valor en el cuadro de búsqueda.");
+            return;
+        }
+        const serverURL = `http://localhost:8080/mobilia/ContractService?contractParam=${paramValue}&action=getContractByParam`;
+
 
         fetch(serverURL)
             .then(response => {
@@ -30,6 +39,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     `;
                         tableBody.appendChild(row);
                     });
+                }else {
+                    alert("No se encontraron resultados para la búsqueda.");
                 }
             })
             .catch(error => {
